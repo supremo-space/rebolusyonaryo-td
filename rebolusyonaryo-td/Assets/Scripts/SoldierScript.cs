@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoldierScript : MonoBehaviour
 {
-    private float speed = 40f;
+    private float speed = 30f;
     private PointsScript points;
     private int pointsInd;
     private Rigidbody2D rb;

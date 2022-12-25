@@ -488,7 +488,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point (4)
   m_TagString: Point
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -519,7 +519,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point (1)
   m_TagString: Point
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -550,7 +550,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point (2)
   m_TagString: Point
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -716,6 +716,7 @@ GameObject:
   - component: {fileID: 913969333}
   - component: {fileID: 913969334}
   - component: {fileID: 913969335}
+  - component: {fileID: 913969336}
   m_Layer: 0
   m_Name: GameHandler
   m_TagString: Untagged
@@ -769,8 +770,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pinoyDefendersPrefabs:
-  - {fileID: 4149025957580685576, guid: 3a05dcb3737c0444f89bae3da2052d3d, type: 3}
-  - {fileID: 4149025957580685576, guid: 3a05dcb3737c0444f89bae3da2052d3d, type: 3}
+  - {fileID: 7857724346619547523, guid: 3a05dcb3737c0444f89bae3da2052d3d, type: 3}
+  - {fileID: 7857724346619547523, guid: 3a05dcb3737c0444f89bae3da2052d3d, type: 3}
   pinoyDefendersImages:
   - {fileID: 193802174}
   - {fileID: 1502509213}
@@ -785,6 +786,7 @@ MonoBehaviour:
   moneyScript: {fileID: 913969335}
   deployingScript: {fileID: 913969334}
   targetSoldier: {fileID: 1117937509}
+  enemySoldiers: []
 --- !u!114 &913969335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,6 +803,20 @@ MonoBehaviour:
   moneyText: {fileID: 2076248146}
   pinoyDefendersCost: 0a00000014000000
   money: 0
+--- !u!114 &913969336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913969331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e0afbd63943514dab06583ba05b1b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySoldier: {fileID: 4801897058829545342, guid: 30f561e6c985a0140ac23c4bf91e0787, type: 3}
+  spawnLocation: {fileID: 1126787467}
 --- !u!1 &966570547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,6 +1276,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1126787467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1126787468}
+  m_Layer: 0
+  m_Name: SpawnLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1126787468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126787467}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -72, y: 647, z: -30.51027}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1134805972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1560,7 @@ GameObject:
   m_Layer: 0
   m_Name: Land
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1885,7 +1932,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point (3)
   m_TagString: Point
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1916,7 +1963,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point
   m_TagString: Point
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
