@@ -9,8 +9,11 @@ public class DeployingScript : MonoBehaviour
     public List<GameObject> pinoyDefendersPrefabs;
     public List<Image> pinoyDefendersImages;
     public List<Image> pinoyDefendersMouseImages;
+    public List<Button> pinoyDefendersButtons;
     public int selectedID = -1;
     public Tilemap deployableTileMap;
+
+    public MoneyScript moneyScript;
 
     void Start() { }
 
@@ -50,6 +53,9 @@ public class DeployingScript : MonoBehaviour
     {
         GameObject pinoyDefender = Instantiate(pinoyDefendersPrefabs[selectedID]);
         pinoyDefender.transform.position = position;
+
+        //decrease money based on the price of defender
+        // moneyScript.money -= moneyScript.pinoyDefendersCost[selectedID];
 
         DeselectPinoyDefenders();
     }
