@@ -55,7 +55,7 @@ public class DeployingScript : MonoBehaviour
         pinoyDefender.transform.position = position;
 
         //decrease money based on the price of defender
-        // moneyScript.money -= moneyScript.pinoyDefendersCost[selectedID];
+        moneyScript.money -= moneyScript.pinoyDefendersCost[selectedID];
 
         DeselectPinoyDefenders();
     }
