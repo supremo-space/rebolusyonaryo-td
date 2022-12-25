@@ -12,8 +12,10 @@ public class DeployingScript : MonoBehaviour
     public List<Button> pinoyDefendersButtons;
     public int selectedID = -1;
     public Tilemap deployableTileMap;
-
     public MoneyScript moneyScript;
+    public DeployingScript deployingScript;
+    public Transform targetSoldier;
+    public GameObject[] enemySoldiers;
 
     void Start() { }
 
@@ -21,6 +23,7 @@ public class DeployingScript : MonoBehaviour
     {
         canDeploy();
         cursorImage();
+        lookAtTheEnemy();
     }
 
     void canDeploy()
@@ -115,6 +118,16 @@ public class DeployingScript : MonoBehaviour
             {
                 img.color = new Color(0, 0, 0, 0);
             }
+        }
+    }
+
+    //defenders must look at the enemy
+    void lookAtTheEnemy()
+    {
+        enemySoldiers = GameObject.FindGameObjectsWithTag("EnemySoldiers");
+        foreach (var soldier in enemySoldiers)
+        {
+            soldier.transform.right = targetSoldier.position - soldier.transform.position;
         }
     }
 }
