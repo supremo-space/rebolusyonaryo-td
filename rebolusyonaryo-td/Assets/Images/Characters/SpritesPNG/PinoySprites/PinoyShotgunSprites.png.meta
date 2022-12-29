@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bc21503a7f6e5ca4a80058043997cf59
+guid: 806b598107445f94b873ff148274a87e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 4
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -127,7 +127,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: PinoyShotgunSprites_0
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 575
+        width: 50
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a52ded46fafdc0c4f8f090088745cd32
+      internalID: 1630073190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PinoyShotgunSprites_1
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 455
+        width: 71
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfba7b630c167d640823c9ced233fd32
+      internalID: -867648006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PinoyShotgunSprites_2
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 560
+        width: 58
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c762821602342ea4f89c46ad28a1fc53
+      internalID: 1927776085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PinoyShotgunSprites_3
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 464
+        width: 58
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da0ac500547e1fd40bd297b6ec8ee48d
+      internalID: 307841266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PinoyShotgunSprites_4
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 77
+        width: 314
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 963b787234595f842bd792a99cc5ec90
+      internalID: -467626507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PinoyShotgunSprites_5
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 148
+        width: 228
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5514a87b9be4b74dadb66d34c2f99e4
+      internalID: 321743466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -138,7 +264,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PinoyShotgunSprites_0: 1630073190
+      PinoyShotgunSprites_4: -467626507
+      PinoyShotgunSprites_5: 321743466
+      PinoyShotgunSprites_1: -867648006
+      PinoyShotgunSprites_2: 1927776085
+      PinoyShotgunSprites_3: 307841266
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

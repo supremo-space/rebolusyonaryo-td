@@ -15,7 +15,7 @@ public class DeployingScript : MonoBehaviour
     public MoneyScript moneyScript;
     public DeployingScript deployingScript;
     public Transform targetSoldier;
-    public GameObject[] enemySoldiers;
+    public GameObject[] pinoySoldiers;
 
     void Start() { }
 
@@ -124,8 +124,8 @@ public class DeployingScript : MonoBehaviour
     //defenders must look at the enemy
     void lookAtTheEnemy()
     {
-        enemySoldiers = GameObject.FindGameObjectsWithTag("EnemySoldiers");
-        foreach (var soldier in enemySoldiers)
+        pinoySoldiers = GameObject.FindGameObjectsWithTag("PinoySoldiers");
+        foreach (var soldier in pinoySoldiers)
         {
             soldier.transform.right = targetSoldier.position - soldier.transform.position;
         }
