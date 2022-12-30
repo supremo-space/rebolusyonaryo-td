@@ -14,7 +14,7 @@ public class DeployingScript : MonoBehaviour
     public Tilemap deployableTileMap;
     public MoneyScript moneyScript;
     public DeployingScript deployingScript;
-    public Transform targetSoldier;
+    public SpawnEnemyScipt spawnEnemyScipt;
     public GameObject[] pinoySoldiers;
 
     void Start() { }
@@ -23,7 +23,6 @@ public class DeployingScript : MonoBehaviour
     {
         canDeploy();
         cursorImage();
-        lookAtTheEnemy();
     }
 
     void canDeploy()
@@ -122,16 +121,6 @@ public class DeployingScript : MonoBehaviour
                 img.color = new Color(0, 0, 0, 0);
                 img.GetComponentInChildren<SpriteRenderer>().color = new Color(0, 0, 0, 0);
             }
-        }
-    }
-
-    //defenders must look at the enemy
-    void lookAtTheEnemy()
-    {
-        pinoySoldiers = GameObject.FindGameObjectsWithTag("PinoySoldiers");
-        foreach (var soldier in pinoySoldiers)
-        {
-            soldier.transform.right = targetSoldier.position - soldier.transform.position;
         }
     }
 }
