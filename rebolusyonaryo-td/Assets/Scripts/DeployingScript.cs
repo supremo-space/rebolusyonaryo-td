@@ -107,6 +107,9 @@ public class DeployingScript : MonoBehaviour
         if (selectedID != -1)
         {
             pinoyDefendersMouseImages[selectedID].color = Color.white;
+            // range color
+            pinoyDefendersMouseImages[selectedID].GetComponentInChildren<SpriteRenderer>().color =
+                new Color(255, 0, 0, 0.2747f);
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = 2f;
             pinoyDefendersMouseImages[selectedID].transform.position =
@@ -117,6 +120,7 @@ public class DeployingScript : MonoBehaviour
             foreach (var img in pinoyDefendersMouseImages)
             {
                 img.color = new Color(0, 0, 0, 0);
+                img.GetComponentInChildren<SpriteRenderer>().color = new Color(0, 0, 0, 0);
             }
         }
     }
