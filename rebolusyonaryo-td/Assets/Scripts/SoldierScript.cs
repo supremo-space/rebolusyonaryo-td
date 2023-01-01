@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoldierScript : MonoBehaviour
 {
-    private float speed = 30f;
+    private float speed = 50f;
     private PointsScript points;
     private int pointsInd;
     private Rigidbody2D rb;
     public int health;
+    public int initialHealth;
     private string[] americanSoldiersName =
     {
         "AmericanPistol(Clone)",
@@ -20,11 +22,14 @@ public class SoldierScript : MonoBehaviour
         "AmericanTank(Clone)"
     };
     private int[] americanSoldiersHealth = { 10, 20, 30, 40, 50, 60, 70 };
+    public GameObject healthBar;
+    private Animator anim;
 
     void Start()
     {
         points = GameObject.FindGameObjectWithTag("Points").GetComponent<PointsScript>();
         rb = this.GetComponent<Rigidbody2D>();
+        anim = gameObject.GetComponent<Animator>();
         setEnemyStats();
     }
 
@@ -33,18 +38,11 @@ public class SoldierScript : MonoBehaviour
         moveToPoint();
         soldierFacing();
         moveToNextPoint();
-        // if (Time.frameCount % 1080 == 0)
-        // {
-        //     this.health -= 10;
-        // }
-        // textContainer.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = health.ToString();
-
-        if (this.health <= 0)
-        {
-            Destroy(gameObject);
-        }
+        updateHealthBar();
+        soldierWillDie();
     }
 
+    //setting enemy stats
     void setEnemyStats()
     {
         for (var i = 0; i < americanSoldiersName.Length; i++)
@@ -52,13 +50,19 @@ public class SoldierScript : MonoBehaviour
             if (this.gameObject.name == americanSoldiersName[i])
             {
                 this.health = americanSoldiersHealth[i];
+                this.initialHealth = americanSoldiersHealth[i];
             }
         }
-        GameObject canvas = GameObject.Find("Canvas").gameObject;
-        GameObject textContainer = canvas.transform.Find("Text (TMP)").gameObject;
-        textContainer.GetComponent<TMPro.TextMeshProUGUI>().text = health.ToString();
     }
 
+    //update health every attacked
+    void updateHealthBar()
+    {
+        healthBar.gameObject.GetComponent<Image>().fillAmount =
+            (float)health / (float)initialHealth;
+    }
+
+    //enemy moves
     void moveToPoint()
     {
         transform.position = Vector2.MoveTowards(
@@ -68,6 +72,7 @@ public class SoldierScript : MonoBehaviour
         );
     }
 
+    //enemy moves to next point
     void moveToNextPoint()
     {
         if (Vector2.Distance(transform.position, points.points[pointsInd].position) < 0.1f)
@@ -79,10 +84,28 @@ public class SoldierScript : MonoBehaviour
         }
     }
 
+    //facing to the point
+
     void soldierFacing()
     {
         Vector3 direction = points.points[pointsInd].position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         rb.rotation = angle;
+    }
+
+    //if enemy health is 0
+    void soldierWillDie()
+    {
+        if (this.health <= 0)
+        {
+            anim.SetTrigger("Die");
+            destroyEnemySoldier();
+        }
+    }
+
+    //destroy enemy gameobject
+    void destroyEnemySoldier()
+    {
+        Destroy(gameObject, 0.5f);
     }
 }

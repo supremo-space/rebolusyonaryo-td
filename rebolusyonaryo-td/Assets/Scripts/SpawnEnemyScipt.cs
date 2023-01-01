@@ -19,7 +19,8 @@ public class SpawnEnemyScipt : MonoBehaviour
     //spawing enemy soldiers
     void spawnEnemySoldiers()
     {
-        var randomNum = Random.Range(0, 6);
+        var randomNum = Random.Range(0, 7);
+        // var randomNum = 4;
         Instantiate(
             enemySoldiers[randomNum],
             spawnLocation.transform.position,
@@ -31,7 +32,7 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     void delaySpawn()
     {
-        if (Time.frameCount % 1080 == 0)
+        if (Time.frameCount % 480 == 0)
         {
             spawnEnemySoldiers();
         }

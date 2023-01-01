@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PinoydefendersScript : MonoBehaviour
 {
     private bool isShown;
     private bool isInsideTheRange;
+    public GameObject[] instantiatedEnemySoldiers;
     public GameObject[] pinoySoldiers;
     private GameObject child;
     private GameObject enemySoldier;
@@ -31,6 +33,7 @@ public class PinoydefendersScript : MonoBehaviour
 
     void Update()
     {
+        storeEnemySoldier();
         lookAtTheEnemyAndAttack();
     }
 
@@ -46,17 +49,12 @@ public class PinoydefendersScript : MonoBehaviour
     {
         if (isShown)
         {
-            this.child.GetComponentInChildren<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+            this.child.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
             isShown = !isShown;
         }
         else
         {
-            this.child.GetComponentInChildren<SpriteRenderer>().color = new Color(
-                255,
-                0,
-                0,
-                0.2747f
-            );
+            this.child.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 0.2747f);
             isShown = !isShown;
         }
     }
@@ -90,7 +88,14 @@ public class PinoydefendersScript : MonoBehaviour
     //looking at the close enemy that is inside the range
     void lookAtTheEnemyAndAttack()
     {
-        if (isInsideTheRange)
+        if (
+            isInsideTheRange && (enemySoldier.gameObject == instantiatedEnemySoldiers[0].gameObject)
+        )
+        {
+            transform.right = enemySoldier.transform.position - transform.position;
+            AttackEnemy();
+        }
+        else
         {
             transform.right = enemySoldier.transform.position - transform.position;
             AttackEnemy();
@@ -104,7 +109,11 @@ public class PinoydefendersScript : MonoBehaviour
         {
             nextAttackTime = Time.time + delayTime;
             enemySoldier.GetComponent<SoldierScript>().health -= damage;
-            Debug.Log(gameObject.name + ":" + damage);
         }
+    }
+
+    void storeEnemySoldier()
+    {
+        instantiatedEnemySoldiers = GameObject.FindGameObjectsWithTag("EnemySoldiers");
     }
 }
