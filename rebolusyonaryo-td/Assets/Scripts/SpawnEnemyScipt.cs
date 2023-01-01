@@ -19,8 +19,8 @@ public class SpawnEnemyScipt : MonoBehaviour
     //spawing enemy soldiers
     void spawnEnemySoldiers()
     {
-        var randomNum = Random.Range(0, 7);
-        // var randomNum = 4;
+        // var randomNum = Random.Range(0, 7);
+        var randomNum = 4;
         Instantiate(
             enemySoldiers[randomNum],
             spawnLocation.transform.position,

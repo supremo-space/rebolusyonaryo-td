@@ -887,6 +887,7 @@ MonoBehaviour:
   health: 0
   initialHealth: 0
   healthBar: {fileID: 1417978423117016024}
+  defenderDamage: 0
 --- !u!50 &664817064279208308
 Rigidbody2D:
   serializedVersion: 4
@@ -921,7 +922,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.85411894, y: 0.18567407}
+  m_Offset: {x: -0.3687029, y: 1.3892002}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -932,7 +933,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.7082384, y: 1.9655163}
+  m_Size: {x: 9.22558, y: 7.2585716}
   m_EdgeRadius: 0
 --- !u!95 &8546557532948241942
 Animator:

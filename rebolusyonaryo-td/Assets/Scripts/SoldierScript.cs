@@ -24,6 +24,7 @@ public class SoldierScript : MonoBehaviour
     private int[] americanSoldiersHealth = { 10, 20, 30, 40, 50, 60, 70 };
     public GameObject healthBar;
     private Animator anim;
+    public int defenderDamage;
 
     void Start()
     {
@@ -40,7 +41,19 @@ public class SoldierScript : MonoBehaviour
         moveToNextPoint();
         updateHealthBar();
         soldierWillDie();
+        Debug.Log(defenderDamage);
     }
+
+    // void OnCollisionEnter(Collision bullet)
+    // {
+    //     if (bullet.gameObject.tag == "Bullet")
+    //     {
+    //         Destroy(bullet.gameObject);
+    //         Debug.Log("sadasda");
+    //         this.health -= defenderDamage;
+    //     }
+    // }
+
 
     //setting enemy stats
     void setEnemyStats()
