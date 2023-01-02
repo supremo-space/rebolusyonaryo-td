@@ -31,6 +31,11 @@ public class PinoydefendersScript : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject bullet;
 
+    //for revolver
+    public GameObject[] bulletSpawnPointForRevolver;
+
+    public GameObject[] bulletForRevolver;
+
     // public bool isReadyToDecrease = false;
 
     void Start()
@@ -102,17 +107,7 @@ public class PinoydefendersScript : MonoBehaviour
     //looking at the close enemy that is inside the range
     void lookAtTheEnemyAndAttack()
     {
-        // if (isInsideTheRange)
-        // {
-        //     transform.right = enemySoldier.transform.position - transform.position;
-        //     AttackEnemy();
-        // }
-        // else
-        // {
-        //     return;
-        // }
-
-        transform.right = enemySoldier.transform.position - transform.position;
+        transform.right = enemySoldier.gameObject.transform.position - transform.position;
         AttackEnemy();
     }
 
@@ -134,13 +129,68 @@ public class PinoydefendersScript : MonoBehaviour
 
     void fireBullet()
     {
-        if (gameObject.name == "PinoySumpit(Clone)")
+        if (gameObject.name == "PinoyBolo(Clone)")
+        {
+            Animator anim = gameObject.GetComponent<Animator>();
+            anim.SetTrigger("Sway");
+            decreaseHealth();
+        }
+        else if (gameObject.name == "PinoySumpit(Clone)")
         {
             bullet = Instantiate(
                 bulletPrefab,
                 bulletSpawnPoint.transform.position,
                 bulletSpawnPoint.transform.rotation
             );
+
+            Animator anim = gameObject.GetComponent<Animator>();
+            anim.SetTrigger("Smoke");
+
+            bullet.transform.parent = gameObject.transform;
+        }
+        else if (gameObject.name == "PinoyTirador(Clone)")
+        {
+            Animator anim = gameObject.GetComponent<Animator>();
+            anim.SetTrigger("Trigger");
+            bullet = Instantiate(
+                bulletPrefab,
+                bulletSpawnPoint.transform.position,
+                bulletSpawnPoint.transform.rotation
+            );
+
+            bullet.transform.parent = gameObject.transform;
+        }
+        else if (gameObject.name == "PinoyRevolver(Clone)")
+        {
+            bulletForRevolver = new GameObject[2];
+            bulletForRevolver[0] = Instantiate(
+                bulletPrefab,
+                bulletSpawnPointForRevolver[0].transform.position,
+                bulletSpawnPointForRevolver[0].transform.rotation
+            );
+
+            bulletForRevolver[1] = Instantiate(
+                bulletPrefab,
+                bulletSpawnPointForRevolver[1].transform.position,
+                bulletSpawnPointForRevolver[1].transform.rotation
+            );
+
+            Animator anim = gameObject.GetComponent<Animator>();
+            anim.SetTrigger("Shoot");
+
+            bulletForRevolver[0].transform.parent = gameObject.transform;
+            bulletForRevolver[1].transform.parent = gameObject.transform;
+        }
+        else if (gameObject.name == "PinoyShotgun(Clone)")
+        {
+            bullet = Instantiate(
+                bulletPrefab,
+                bulletSpawnPoint.transform.position,
+                bulletSpawnPoint.transform.rotation
+            );
+
+            Animator anim = gameObject.GetComponent<Animator>();
+            anim.SetTrigger("Shoot");
 
             bullet.transform.parent = gameObject.transform;
         }
