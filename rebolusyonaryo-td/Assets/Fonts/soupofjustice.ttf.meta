@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fffb616f1ea9a814aa8c4c4726e3fc97
+guid: 4b14bed9bef043c4ea1602e32f7dfe5f
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Essays1743
+  - Soup of Justice
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
