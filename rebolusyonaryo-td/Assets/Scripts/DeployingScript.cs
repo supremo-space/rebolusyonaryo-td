@@ -12,7 +12,6 @@ public class DeployingScript : MonoBehaviour
     public List<Button> pinoyDefendersButtons;
     public int selectedID = -1;
     public Tilemap deployableTileMap;
-    public MoneyScript moneyScript;
     public DeployingScript deployingScript;
     public SpawnEnemyScipt spawnEnemyScipt;
     public GameObject[] pinoySoldiers;
@@ -57,7 +56,7 @@ public class DeployingScript : MonoBehaviour
         pinoyDefender.transform.position = position;
 
         //decrease money based on the price of defender
-        moneyScript.money -= moneyScript.pinoyDefendersCost[selectedID];
+        MoneyScript.money -= MoneyScript.pinoyDefendersCost[selectedID];
 
         DeselectPinoyDefenders();
     }

@@ -8,8 +8,8 @@ public class MoneyScript : MonoBehaviour
 {
     public DeployingScript deployingScript;
     public GameObject moneyText;
-    public int[] pinoyDefendersCost;
-    public int money;
+    public static int[] pinoyDefendersCost;
+    public static int money;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class MoneyScript : MonoBehaviour
     void setinitialMoney()
     {
         pinoyDefendersCost = new int[] { 10, 20, 30, 40, 50 };
-        money = 500;
+        money = 40;
     }
 
     //changing money text

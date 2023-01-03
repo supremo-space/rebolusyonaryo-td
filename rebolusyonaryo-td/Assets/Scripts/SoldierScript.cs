@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SoldierScript : MonoBehaviour
 {
-    private float speed = 50f;
+    public static float speed = 60f;
     private PointsScript points;
     private int pointsInd;
     private Rigidbody2D rb;
@@ -21,7 +21,7 @@ public class SoldierScript : MonoBehaviour
         "AmericanJeep(Clone)",
         "AmericanTank(Clone)"
     };
-    private int[] americanSoldiersHealth = { 10, 20, 30, 40, 50, 60, 70 };
+    private int[] americanSoldiersHealth = { 10, 20, 30, 50, 60, 70, 80 };
     public GameObject healthBar;
     private Animator anim;
     public int defenderDamage;
@@ -41,19 +41,7 @@ public class SoldierScript : MonoBehaviour
         moveToNextPoint();
         updateHealthBar();
         soldierWillDie();
-        Debug.Log(defenderDamage);
     }
-
-    // void OnCollisionEnter(Collision bullet)
-    // {
-    //     if (bullet.gameObject.tag == "Bullet")
-    //     {
-    //         Destroy(bullet.gameObject);
-    //         Debug.Log("sadasda");
-    //         this.health -= defenderDamage;
-    //     }
-    // }
-
 
     //setting enemy stats
     void setEnemyStats()
@@ -119,6 +107,41 @@ public class SoldierScript : MonoBehaviour
     //destroy enemy gameobject
     void destroyEnemySoldier()
     {
-        Destroy(gameObject, 0.5f);
+        StartCoroutine(dieCostNDestroy(1));
+        // if (gameObject.name == "AmericanPistol(Clone)")
+        // {
+
+        // }
+        // else if (gameObject.name == "AmericanRifle(Clone)")
+        // {
+        //     StartCoroutine(dieCostNDestroy(1));
+        // }
+        // else if (gameObject.name == "AmericanSniper(Clone)")
+        // {
+        //     StartCoroutine(dieCostNDestroy(1));
+        // }
+        // else if (gameObject.name == "AmericanMachineGun(Clone)")
+        // {
+        //     StartCoroutine(dieCostNDestroy(1));
+        // }
+        // else if (gameObject.name == "AmericanBazooka(Clone)")
+        // {
+        //     StartCoroutine(dieCostNDestroy(1));
+        // }
+        // else if (gameObject.name == "AmericanJeep(Clone)")
+        // {
+        //     StartCoroutine(dieCostNDestroy(3));
+        // }
+        // else if (gameObject.name == "AmericanTank(Clone)")
+        // {
+        //     StartCoroutine(dieCostNDestroy(3));
+        // }
+    }
+
+    IEnumerator dieCostNDestroy(int cost)
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
+        MoneyScript.money += cost;
     }
 }
