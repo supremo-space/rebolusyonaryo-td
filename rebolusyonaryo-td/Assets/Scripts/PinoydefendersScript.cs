@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.Tilemaps;
 
 public class PinoydefendersScript : MonoBehaviour
 {
-    private bool isShown;
-    private bool isInsideTheRange;
+    public bool isShown;
+    public bool isInsideTheRange;
     public GameObject[] instantiatedEnemySoldiers;
     public GameObject[] pinoySoldiers;
     private GameObject child;
@@ -36,10 +39,19 @@ public class PinoydefendersScript : MonoBehaviour
 
     public GameObject[] bulletForRevolver;
 
-    // public bool isReadyToDecrease = false;
+    public Image sellImageButton;
+    public Button sellButton;
+    public TextMeshProUGUI sellText;
+
+    public SpriteRenderer circle;
+
+    public Vector3Int tilePosition;
+    public Tilemap tilemap;
 
     void Start()
     {
+        GetComponent<BoxCollider2D>().isTrigger = true;
+        GetComponent<CircleCollider2D>().enabled = false;
         initializeVariables();
         setDefenderStats();
     }
@@ -57,27 +69,32 @@ public class PinoydefendersScript : MonoBehaviour
         isInsideTheRange = false;
     }
 
-    //showing the range
+    // showing the range
     void OnMouseDown()
     {
         if (isShown)
         {
             this.child.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
             isShown = !isShown;
+            sellImageButton.enabled = false;
+            sellButton.enabled = false;
+            sellText.enabled = false;
         }
         else
         {
             this.child.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 0.2747f);
             isShown = !isShown;
+            sellImageButton.enabled = true;
+            sellButton.enabled = true;
+            sellText.enabled = true;
         }
     }
 
-    //collider trigger when enemy enters the range
     void OnTriggerEnter2D(Collider2D enemy)
     {
         if (enemy.gameObject.tag == "EnemySoldiers")
         {
-            this.enemySoldier = enemy.gameObject;
+            enemySoldier = enemy.gameObject;
             isInsideTheRange = !isInsideTheRange;
         }
     }
@@ -85,9 +102,10 @@ public class PinoydefendersScript : MonoBehaviour
     //collider trigger when enemy exits the range
     void OnTriggerExit2D(Collider2D enemy)
     {
+        var parentScript = transform.parent.gameObject.GetComponent<PinoydefendersScript>();
         if (enemy.gameObject.tag == "EnemySoldiers")
         {
-            isInsideTheRange = !isInsideTheRange;
+            parentScript.isInsideTheRange = !parentScript.isInsideTheRange;
         }
     }
 
@@ -199,5 +217,19 @@ public class PinoydefendersScript : MonoBehaviour
     public void decreaseHealth()
     {
         enemySoldier.gameObject.GetComponent<SoldierScript>().health -= damage;
+    }
+
+    public void sellDefender()
+    {
+        DeployingScript.sellPos = transform.position;
+        Destroy(gameObject);
+
+        for (var i = 0; i < pinoyDefenderNames.Length; i++)
+        {
+            if (gameObject.name == pinoyDefenderNames[i])
+            {
+                MoneyScript.money += MoneyScript.pinoyDefendersCost[i];
+            }
+        }
     }
 }

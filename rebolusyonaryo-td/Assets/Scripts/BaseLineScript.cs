@@ -16,7 +16,6 @@ public class BaseLineScript : MonoBehaviour
     {
         if (soldier.gameObject.tag == "EnemySoldiers")
         {
-            Debug.Log("sdsdsd");
             foreach (var btn in defenderButtons)
             {
                 btn.interactable = false;

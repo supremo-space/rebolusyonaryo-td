@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SpawnEnemyScipt : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class SpawnEnemyScipt : MonoBehaviour
     private Scene scene;
     private float time;
     private float timeDelay = 2f;
+    private GameObject[] instantiatedPinoy;
 
     void Start()
     {
@@ -29,6 +31,7 @@ public class SpawnEnemyScipt : MonoBehaviour
         changeRoundText();
         readyToSpawn();
         storeEnemySoldier();
+        storePinoySoldier();
         ifEnemyZero();
         checkVictory();
     }
@@ -39,6 +42,7 @@ public class SpawnEnemyScipt : MonoBehaviour
         if (!isReadyToPlay)
         {
             roundNum++;
+
             isReadyToPlay = !isReadyToPlay;
             foreach (var btn in defenderButtons)
             {
@@ -51,6 +55,7 @@ public class SpawnEnemyScipt : MonoBehaviour
     {
         if (isReadyToPlay)
         {
+            disableCircleCollider(true);
             if (isSpawnAvailable)
             {
                 delaySpawn();
@@ -86,6 +91,19 @@ public class SpawnEnemyScipt : MonoBehaviour
         instantiatedEnemySoldiers = GameObject.FindGameObjectsWithTag("EnemySoldiers");
     }
 
+    void storePinoySoldier()
+    {
+        instantiatedPinoy = GameObject.FindGameObjectsWithTag("PinoySoldiers");
+    }
+
+    void disableCircleCollider(bool boolean)
+    {
+        foreach (var defender in instantiatedPinoy)
+        {
+            defender.gameObject.GetComponent<CircleCollider2D>().enabled = boolean;
+        }
+    }
+
     void ifEnemyZero()
     {
         if (!isSpawnAvailable)
@@ -101,6 +119,7 @@ public class SpawnEnemyScipt : MonoBehaviour
                     }
                     isSpawnAvailable = !isSpawnAvailable;
                     instantiatedEnemySoldiersCount = 0;
+                    disableCircleCollider(false);
                 }
             }
         }
@@ -108,14 +127,23 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     void changeRoundText()
     {
-        roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = roundNum.ToString();
+        if (!isReadyToPlay)
+        {
+            roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text =
+                "Deployment Time! Next will be round " + (roundNum + 1).ToString();
+        }
+        else
+        {
+            roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text =
+                "Round " + roundNum.ToString();
+        }
     }
 
     void checkVictory()
     {
         if (scene.name == "AmericanWarScene")
         {
-            if (roundNum == 6)
+            if (roundNum == 10)
             {
                 if (instantiatedEnemySoldiers.Length == 0)
                 {
@@ -154,7 +182,7 @@ public class SpawnEnemyScipt : MonoBehaviour
         }
         else if (roundNum == 5)
         {
-            spawningCount(2, 4, 55);
+            spawningCount(2, 3, 55);
         }
         else if (roundNum == 6)
         {
@@ -171,11 +199,11 @@ public class SpawnEnemyScipt : MonoBehaviour
         }
         else if (roundNum == 9)
         {
-            spawningCount(5, 6, 95);
+            spawningCount(4, 6, 95);
         }
         else if (roundNum == 10)
         {
-            spawningCount(6, 7, 100);
+            spawningCount(5, 7, 110);
         }
     }
 

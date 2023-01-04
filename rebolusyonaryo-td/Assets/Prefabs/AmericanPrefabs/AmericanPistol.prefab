@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 4020812025968795852}
   - component: {fileID: 197312645035737384}
   - component: {fileID: 8415252562338303627}
-  - component: {fileID: 4461926419180427261}
+  - component: {fileID: 888847304}
   m_Layer: 0
   m_Name: AmericanPistol
   m_TagString: EnemySoldiers
@@ -461,7 +461,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.610887, y: 4.3779364}
   m_EdgeRadius: 0
---- !u!95 &4461926419180427261
+--- !u!95 &888847304
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0

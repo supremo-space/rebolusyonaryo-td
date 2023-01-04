@@ -21,7 +21,7 @@ public class SoldierScript : MonoBehaviour
         "AmericanJeep(Clone)",
         "AmericanTank(Clone)"
     };
-    private int[] americanSoldiersHealth = { 10, 20, 30, 50, 60, 70, 80 };
+    private int[] americanSoldiersHealth = { 10, 20, 30, 70, 90, 130, 180 };
     public GameObject healthBar;
     private Animator anim;
     public int defenderDamage;
@@ -107,41 +107,23 @@ public class SoldierScript : MonoBehaviour
     //destroy enemy gameobject
     void destroyEnemySoldier()
     {
-        StartCoroutine(dieCostNDestroy(1));
-        // if (gameObject.name == "AmericanPistol(Clone)")
-        // {
-
-        // }
-        // else if (gameObject.name == "AmericanRifle(Clone)")
-        // {
-        //     StartCoroutine(dieCostNDestroy(1));
-        // }
-        // else if (gameObject.name == "AmericanSniper(Clone)")
-        // {
-        //     StartCoroutine(dieCostNDestroy(1));
-        // }
-        // else if (gameObject.name == "AmericanMachineGun(Clone)")
-        // {
-        //     StartCoroutine(dieCostNDestroy(1));
-        // }
-        // else if (gameObject.name == "AmericanBazooka(Clone)")
-        // {
-        //     StartCoroutine(dieCostNDestroy(1));
-        // }
-        // else if (gameObject.name == "AmericanJeep(Clone)")
-        // {
-        //     StartCoroutine(dieCostNDestroy(3));
-        // }
-        // else if (gameObject.name == "AmericanTank(Clone)")
-        // {
-        //     StartCoroutine(dieCostNDestroy(3));
-        // }
+        StartCoroutine(dieCostNDestroy());
     }
 
-    IEnumerator dieCostNDestroy(int cost)
+    IEnumerator dieCostNDestroy()
     {
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
-        MoneyScript.money += cost;
+        hasReward();
+    }
+
+    void hasReward()
+    {
+        bool[] rewardArr = { true, false, false };
+        var randomBool = Random.Range(0, 3);
+        if (rewardArr[randomBool])
+        {
+            MoneyScript.money += 1;
+        }
     }
 }

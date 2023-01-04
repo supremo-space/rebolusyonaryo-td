@@ -44,6 +44,10 @@ public class MoneyScript : MonoBehaviour
             {
                 defender.interactable = false;
             }
+            else
+            {
+                defender.interactable = true;
+            }
             i++;
         }
     }

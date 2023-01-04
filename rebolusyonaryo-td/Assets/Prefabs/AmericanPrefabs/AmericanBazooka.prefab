@@ -888,7 +888,6 @@ MonoBehaviour:
   initialHealth: 0
   healthBar: {fileID: 1417978423117016024}
   defenderDamage: 0
-  moneyScript: {fileID: 1889210839529322888, guid: ff53a4e6abe8a1d4eb5882c12b209e71, type: 3}
 --- !u!50 &664817064279208308
 Rigidbody2D:
   serializedVersion: 4
