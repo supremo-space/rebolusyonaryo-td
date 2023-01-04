@@ -11,7 +11,7 @@ public class SpawnEnemyScipt : MonoBehaviour
     public GameObject[] instantiatedEnemySoldiers;
     public GameObject spawnLocation;
     public Button[] defenderButtons;
-    private bool isReadyToPlay = false;
+    public static bool isReadyToPlay = false;
     private bool isSpawnAvailable = true;
     private int roundNum = 0;
     private int instantiatedEnemySoldiersCount = 0;
@@ -177,12 +177,12 @@ public class SpawnEnemyScipt : MonoBehaviour
         }
         else if (roundNum == 4)
         {
-            spawningCount(2, 3, 50);
+            spawningCount(1, 3, 50);
             SoldierScript.speed = 80f;
         }
         else if (roundNum == 5)
         {
-            spawningCount(2, 3, 55);
+            spawningCount(2, 4, 55);
         }
         else if (roundNum == 6)
         {

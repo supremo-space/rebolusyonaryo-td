@@ -46,7 +46,10 @@ public class MoneyScript : MonoBehaviour
             }
             else
             {
-                defender.interactable = true;
+                if (!SpawnEnemyScipt.isReadyToPlay)
+                {
+                    defender.interactable = true;
+                }
             }
             i++;
         }
