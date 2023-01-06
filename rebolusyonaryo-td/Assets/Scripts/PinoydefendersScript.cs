@@ -151,6 +151,7 @@ public class PinoydefendersScript : MonoBehaviour
         {
             Animator anim = gameObject.GetComponent<Animator>();
             anim.SetTrigger("Sway");
+            gameObject.GetComponent<AudioSource>().Play();
             decreaseHealth();
         }
         else if (gameObject.name == "PinoySumpit(Clone)")
@@ -163,6 +164,7 @@ public class PinoydefendersScript : MonoBehaviour
 
             Animator anim = gameObject.GetComponent<Animator>();
             anim.SetTrigger("Smoke");
+            gameObject.GetComponent<AudioSource>().Play();
 
             bullet.transform.parent = gameObject.transform;
         }
@@ -175,6 +177,7 @@ public class PinoydefendersScript : MonoBehaviour
                 bulletSpawnPoint.transform.position,
                 bulletSpawnPoint.transform.rotation
             );
+            gameObject.GetComponent<AudioSource>().Play();
 
             bullet.transform.parent = gameObject.transform;
         }
@@ -195,6 +198,7 @@ public class PinoydefendersScript : MonoBehaviour
 
             Animator anim = gameObject.GetComponent<Animator>();
             anim.SetTrigger("Shoot");
+            gameObject.GetComponent<AudioSource>().Play();
 
             bulletForRevolver[0].transform.parent = gameObject.transform;
             bulletForRevolver[1].transform.parent = gameObject.transform;
@@ -209,6 +213,7 @@ public class PinoydefendersScript : MonoBehaviour
 
             Animator anim = gameObject.GetComponent<Animator>();
             anim.SetTrigger("Shoot");
+            gameObject.GetComponent<AudioSource>().Play();
 
             bullet.transform.parent = gameObject.transform;
         }
