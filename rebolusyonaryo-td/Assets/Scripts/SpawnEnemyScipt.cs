@@ -130,7 +130,7 @@ public class SpawnEnemyScipt : MonoBehaviour
         if (!isReadyToPlay)
         {
             roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text =
-                "Deployment Time! Next will be round " + (roundNum + 1).ToString();
+                "Next round: " + (roundNum + 1).ToString();
         }
         else
         {

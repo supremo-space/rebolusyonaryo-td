@@ -7,7 +7,14 @@ using UnityEngine.UI;
 public class ButtonsScript : MonoBehaviour
 {
     public TextMeshProUGUI text;
+    public TextMeshProUGUI panelBtnText;
     public int scale = 1;
+
+    public bool isPanelOpen = true;
+
+    public Button panelBtn;
+
+    public GameObject panel;
 
     void Start()
     {
@@ -41,6 +48,22 @@ public class ButtonsScript : MonoBehaviour
             Time.timeScale = 1;
             scale = 1;
             text.text = scale.ToString() + "x";
+        }
+    }
+
+    public void panelFucntion()
+    {
+        if (isPanelOpen)
+        {
+            panel.GetComponent<Animator>().SetTrigger("Close");
+            isPanelOpen = !isPanelOpen;
+            panelBtnText.text = "Open";
+        }
+        else
+        {
+            panel.GetComponent<Animator>().SetTrigger("Open");
+            isPanelOpen = !isPanelOpen;
+            panelBtnText.text = "Close";
         }
     }
 }

@@ -16,8 +16,7 @@ public class DeployingScript : MonoBehaviour
     public SpawnEnemyScipt spawnEnemyScipt;
     public GameObject[] pinoySoldiers;
     public static Vector3 sellPos;
-
-    public Tile tile;
+    public TileBase thisTile;
 
     void Start() { }
 
@@ -39,8 +38,9 @@ public class DeployingScript : MonoBehaviour
     void setTileNull()
     {
         var tilepos = deployableTileMap.WorldToCell(sellPos);
+        thisTile = deployableTileMap.GetTile(tilepos);
         deployableTileMap.SetTile(tilepos, null);
-        deployableTileMap.SetTile(tilepos, tile);
+        deployableTileMap.SetTile(tilepos, thisTile);
     }
 
     //detects the pointed coordinates of mouse,converting mouse position to cell position, centering the object to tile, checks if tilemap has sprite or none
