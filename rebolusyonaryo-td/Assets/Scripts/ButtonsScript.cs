@@ -16,6 +16,8 @@ public class ButtonsScript : MonoBehaviour
 
     public GameObject panel;
 
+    public AudioSource clickAS;
+
     void Start()
     {
         text.text = scale.ToString() + "x";
@@ -25,6 +27,7 @@ public class ButtonsScript : MonoBehaviour
 
     public void speedUp()
     {
+        clickAS.Play();
         if (scale == 1)
         {
             Time.timeScale = 2;
@@ -53,6 +56,7 @@ public class ButtonsScript : MonoBehaviour
 
     public void panelFucntion()
     {
+        clickAS.Play();
         if (isPanelOpen)
         {
             panel.GetComponent<Animator>().SetTrigger("Close");

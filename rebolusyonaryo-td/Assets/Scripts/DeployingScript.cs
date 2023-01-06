@@ -17,6 +17,8 @@ public class DeployingScript : MonoBehaviour
     public GameObject[] pinoySoldiers;
     public static Vector3 sellPos;
     public TileBase thisTile;
+    public AudioSource clickAS;
+    public AudioSource grassAS;
 
     void Start() { }
 
@@ -66,6 +68,8 @@ public class DeployingScript : MonoBehaviour
         GameObject pinoyDefender = Instantiate(pinoyDefendersPrefabs[selectedID]);
         pinoyDefender.transform.position = position;
 
+        grassAS.Play();
+
         //decrease money based on the price of defender
         MoneyScript.money -= MoneyScript.pinoyDefendersCost[selectedID];
 
@@ -75,6 +79,7 @@ public class DeployingScript : MonoBehaviour
     //logic for selecting the right defender, setting the black and white when clicked
     public void selectPinoyDefender(int id)
     {
+        clickAS.Play();
         if (selectedID == -1)
         {
             selectedID = id;

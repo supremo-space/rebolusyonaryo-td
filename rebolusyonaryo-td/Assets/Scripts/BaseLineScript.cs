@@ -7,6 +7,10 @@ public class BaseLineScript : MonoBehaviour
 {
     public GameObject roundText;
     public Button[] defenderButtons;
+    public GameObject defeatText;
+    public bool ifEnemyIn = false;
+
+    // public AudioSource defeatAS;
 
     void Start() { }
 
@@ -14,13 +18,19 @@ public class BaseLineScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D soldier)
     {
-        if (soldier.gameObject.tag == "EnemySoldiers")
+        if (!ifEnemyIn)
         {
-            foreach (var btn in defenderButtons)
+            gameObject.GetComponent<AudioSource>().Play();
+            if (soldier.gameObject.tag == "EnemySoldiers")
             {
-                btn.interactable = false;
+                foreach (var btn in defenderButtons)
+                {
+                    btn.interactable = false;
+                }
             }
-            roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "defeat!!!!!!";
+            Time.timeScale = 1;
+            defeatText.GetComponent<Animator>().SetTrigger("ShowVictory");
+            ifEnemyIn = !ifEnemyIn;
         }
     }
 }

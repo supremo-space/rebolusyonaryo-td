@@ -20,6 +20,13 @@ public class SpawnEnemyScipt : MonoBehaviour
     private float time;
     private float timeDelay = 2f;
     private GameObject[] instantiatedPinoy;
+    public AudioSource playAS;
+    public GameObject clearedText;
+    public AudioSource victoryAS;
+    public GameObject victory;
+    public TextMeshProUGUI victoryText;
+    public AudioClip victoryWinAS;
+    private float times;
 
     void Start()
     {
@@ -38,6 +45,7 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     public void playButton()
     {
+        playAS.Play();
         time = 0f;
         if (!isReadyToPlay)
         {
@@ -112,6 +120,11 @@ public class SpawnEnemyScipt : MonoBehaviour
             {
                 if (instantiatedEnemySoldiers.Length == 0)
                 {
+                    times = Time.timeScale;
+                    Time.timeScale = 1;
+                    victoryAS.Play();
+                    StartCoroutine(backTimeScale());
+                    clearedText.GetComponent<Animator>().SetTrigger("Show");
                     isReadyToPlay = !isReadyToPlay;
                     foreach (var btn in defenderButtons)
                     {
@@ -123,6 +136,12 @@ public class SpawnEnemyScipt : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator backTimeScale()
+    {
+        yield return new WaitForSeconds(1);
+        Time.timeScale = times;
     }
 
     void changeRoundText()
@@ -153,8 +172,14 @@ public class SpawnEnemyScipt : MonoBehaviour
                         {
                             btn.interactable = false;
                         }
-                        roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text =
-                            "victory!!!!!!";
+                        Time.timeScale = 1;
+                        if (!victoryAS.isPlaying)
+                        {
+                            victoryText.text = "Victory!";
+                            victoryAS.clip = victoryWinAS;
+                            victoryAS.Play();
+                            victory.GetComponent<Animator>().SetTrigger("ShowVictory");
+                        }
                     }
                 }
             }

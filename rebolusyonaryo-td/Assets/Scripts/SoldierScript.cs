@@ -28,6 +28,7 @@ public class SoldierScript : MonoBehaviour
 
     void Start()
     {
+        GetComponent<AudioSource>().Play();
         points = GameObject.FindGameObjectWithTag("Points").GetComponent<PointsScript>();
         rb = this.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
