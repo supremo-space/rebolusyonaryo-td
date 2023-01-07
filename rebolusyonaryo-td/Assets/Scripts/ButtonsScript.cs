@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonsScript : MonoBehaviour
 {
@@ -69,5 +70,10 @@ public class ButtonsScript : MonoBehaviour
             isPanelOpen = !isPanelOpen;
             panelBtnText.text = "Close";
         }
+    }
+
+    public void exit()
+    {
+        SceneManager.LoadScene(1);
     }
 }

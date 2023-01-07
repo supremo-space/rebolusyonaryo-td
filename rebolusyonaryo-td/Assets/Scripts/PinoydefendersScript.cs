@@ -14,7 +14,7 @@ public class PinoydefendersScript : MonoBehaviour
     public GameObject[] pinoySoldiers;
     private GameObject child;
     public GameObject enemySoldier;
-    private int[] pinoyDefenderDamages = { 5, 10, 25, 45, 90, 10 };
+    private int[] pinoyDefenderDamages = { 5, 10, 25, 45, 90, 5 };
     private string[] pinoyDefenderNames =
     {
         "PinoyBolo(Clone)",
@@ -61,6 +61,7 @@ public class PinoydefendersScript : MonoBehaviour
     {
         storeEnemySoldier();
         lookAtTheEnemyAndAttack();
+        sellButtonState();
     }
 
     void initializeVariables()
@@ -250,6 +251,18 @@ public class PinoydefendersScript : MonoBehaviour
             {
                 MoneyScript.money += MoneyScript.pinoyDefendersCost[i];
             }
+        }
+    }
+
+    void sellButtonState()
+    {
+        if (SpawnEnemyScipt.isReadyToPlay)
+        {
+            sellButton.interactable = false;
+        }
+        else
+        {
+            sellButton.interactable = true;
         }
     }
 }
