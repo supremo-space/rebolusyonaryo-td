@@ -47,9 +47,26 @@ public class BulletScript : MonoBehaviour
     {
         if (enemy.gameObject.tag == "EnemySoldiers")
         {
-            GameObject parent = transform.parent.gameObject;
-            parent.gameObject.GetComponent<PinoydefendersScript>().decreaseHealth();
-            Destroy(gameObject);
+            if (gameObject.name == "Bomba(Clone)")
+            {
+                DeployingScript.isBombPlay = !DeployingScript.isBombPlay;
+                var parentScript = this.parent.gameObject.GetComponent<PinoydefendersScript>();
+                parent.gameObject.GetComponent<PinoydefendersScript>().decreaseHealth();
+                Destroy(gameObject);
+            }
+            else
+            {
+                GameObject parent = transform.parent.gameObject;
+                parent.gameObject.GetComponent<PinoydefendersScript>().decreaseHealth();
+                Destroy(gameObject);
+            }
         }
     }
 }
+
+//     IEnumerator delay()
+//     {
+//         yield return new WaitForSeconds(0.1f);
+//         Destroy(gameObject);
+//     }
+// }

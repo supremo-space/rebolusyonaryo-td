@@ -14,16 +14,17 @@ public class PinoydefendersScript : MonoBehaviour
     public GameObject[] pinoySoldiers;
     private GameObject child;
     public GameObject enemySoldier;
-    private int[] pinoyDefenderDamages = { 5, 10, 25, 45, 90 };
+    private int[] pinoyDefenderDamages = { 5, 10, 25, 45, 90, 10 };
     private string[] pinoyDefenderNames =
     {
         "PinoyBolo(Clone)",
         "PinoyTirador(Clone)",
         "PinoySumpit(Clone)",
         "PinoyRevolver(Clone)",
-        "PinoyShotgun(Clone)"
+        "PinoyShotgun(Clone)",
+        "PinoyBomber(Clone)"
     };
-    private float[] pinoyDefenderAttackDelay = { 1f, 3f, 3f, 4f, 8f };
+    private float[] pinoyDefenderAttackDelay = { 1f, 3f, 3f, 4f, 3f, 2f };
     private float nextAttackTime;
     private float delayTime = 0f;
     private int damage = 0;
@@ -213,6 +214,20 @@ public class PinoydefendersScript : MonoBehaviour
 
             Animator anim = gameObject.GetComponent<Animator>();
             anim.SetTrigger("Shoot");
+            gameObject.GetComponent<AudioSource>().Play();
+
+            bullet.transform.parent = gameObject.transform;
+        }
+        else if (gameObject.name == "PinoyBomber(Clone)")
+        {
+            bullet = Instantiate(
+                bulletPrefab,
+                bulletSpawnPoint.transform.position,
+                bulletSpawnPoint.transform.rotation
+            );
+
+            Animator anim = gameObject.GetComponent<Animator>();
+            anim.SetTrigger("Throw");
             gameObject.GetComponent<AudioSource>().Play();
 
             bullet.transform.parent = gameObject.transform;

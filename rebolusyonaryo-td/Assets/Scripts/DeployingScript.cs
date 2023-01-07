@@ -19,6 +19,8 @@ public class DeployingScript : MonoBehaviour
     public TileBase thisTile;
     public AudioSource clickAS;
     public AudioSource grassAS;
+    public AudioSource bombAS;
+    public static bool isBombPlay = false;
 
     void Start() { }
 
@@ -27,6 +29,11 @@ public class DeployingScript : MonoBehaviour
         canDeploy();
         cursorImage();
         setTileNull();
+        if (isBombPlay)
+        {
+            bombAS.Play();
+            isBombPlay = !isBombPlay;
+        }
     }
 
     void canDeploy()
