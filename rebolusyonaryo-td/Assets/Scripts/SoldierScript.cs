@@ -32,8 +32,18 @@ public class SoldierScript : MonoBehaviour
         "JapaneseDoubleRifle(Clone)",
         "JapaneseShotgun(Clone)"
     };
+
+    private string[] spanishSoldiersName =
+    {
+        "SpanishAxe(Clone)",
+        "SpanishSpear(Clone)",
+        "SpanishSwordShield(Clone)",
+        "SpanishBow(Clone)",
+        "SpanishMagellan(Clone)",
+    };
     private int[] americanSoldiersHealth = { 10, 20, 30, 70, 90, 130, 180 };
     private int[] japaneseSoldiersHealth = { 10, 20, 25, 35, 45, 50 };
+    private int[] spanishSoldiersHealth = { 15, 25, 50, 150, 2000 };
     public GameObject healthBar;
     private Animator anim;
     public int defenderDamage;
@@ -80,6 +90,17 @@ public class SoldierScript : MonoBehaviour
                 {
                     this.health = americanSoldiersHealth[i];
                     this.initialHealth = americanSoldiersHealth[i];
+                }
+            }
+        }
+        else if (scene.name == "SpanishWarScene")
+        {
+            for (var i = 0; i < spanishSoldiersName.Length; i++)
+            {
+                if (this.gameObject.name == spanishSoldiersName[i])
+                {
+                    this.health = spanishSoldiersHealth[i];
+                    this.initialHealth = spanishSoldiersHealth[i];
                 }
             }
         }

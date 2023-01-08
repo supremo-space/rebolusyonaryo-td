@@ -104,6 +104,10 @@ public class PinoydefendersScript : MonoBehaviour
     //collider trigger when enemy exits the range
     void OnTriggerExit2D(Collider2D enemy)
     {
+        if (enemy.name == "SpanishMagellan(Clone)")
+        {
+            enemySoldier = null;
+        }
         var parentScript = transform.parent.gameObject.GetComponent<PinoydefendersScript>();
         if (enemy.gameObject.tag == "EnemySoldiers")
         {

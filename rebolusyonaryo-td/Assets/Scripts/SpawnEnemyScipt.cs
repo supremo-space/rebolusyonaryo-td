@@ -85,6 +85,10 @@ public class SpawnEnemyScipt : MonoBehaviour
         {
             ifAmericanScene();
         }
+        else if (scene.name == "SpanishWarScene")
+        {
+            ifSpanishScene();
+        }
     }
 
     //delay spawn
@@ -181,6 +185,7 @@ public class SpawnEnemyScipt : MonoBehaviour
                         Time.timeScale = 1;
                         if (!victoryAS.isPlaying)
                         {
+                            roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "";
                             victoryText.text = "Victory!";
                             victoryAS.clip = victoryWinAS;
                             victoryAS.Play();
@@ -205,6 +210,32 @@ public class SpawnEnemyScipt : MonoBehaviour
                         Time.timeScale = 1;
                         if (!victoryAS.isPlaying)
                         {
+                            roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+                            victoryText.text = "Victory!";
+                            victoryAS.clip = victoryWinAS;
+                            victoryAS.Play();
+                            victory.GetComponent<Animator>().SetTrigger("ShowVictory");
+                        }
+                    }
+                }
+            }
+        }
+        else if (scene.name == "SpanishWarScene")
+        {
+            if (roundNum == 10)
+            {
+                if (instantiatedEnemySoldiers.Length == 0)
+                {
+                    if (!isReadyToPlay)
+                    {
+                        foreach (var btn in defenderButtons)
+                        {
+                            btn.interactable = false;
+                        }
+                        Time.timeScale = 1;
+                        if (!victoryAS.isPlaying)
+                        {
+                            roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "";
                             victoryText.text = "Victory!";
                             victoryAS.clip = victoryWinAS;
                             victoryAS.Play();
@@ -284,6 +315,53 @@ public class SpawnEnemyScipt : MonoBehaviour
         else if (roundNum == 5)
         {
             spawningCount(4, 6, 55);
+        }
+    }
+
+    void ifSpanishScene()
+    {
+        if (roundNum == 1)
+        {
+            spawningCount(4, 5, 1);
+        }
+        else if (roundNum == 2)
+        {
+            spawningCount(0, 1, 25);
+        }
+        else if (roundNum == 3)
+        {
+            spawningCount(0, 2, 35);
+        }
+        else if (roundNum == 4)
+        {
+            spawningCount(0, 2, 50);
+            SoldierScript.speed = 80f;
+        }
+        else if (roundNum == 5)
+        {
+            spawningCount(1, 3, 55);
+        }
+        else if (roundNum == 6)
+        {
+            spawningCount(1, 3, 70);
+        }
+        else if (roundNum == 7)
+        {
+            spawningCount(1, 4, 80);
+        }
+        else if (roundNum == 8)
+        {
+            SoldierScript.speed = 100f;
+            spawningCount(2, 4, 85);
+        }
+        else if (roundNum == 9)
+        {
+            spawningCount(2, 4, 95);
+        }
+        else if (roundNum == 10)
+        {
+            SoldierScript.speed = 50f;
+            spawningCount(4, 5, 1);
         }
     }
 
