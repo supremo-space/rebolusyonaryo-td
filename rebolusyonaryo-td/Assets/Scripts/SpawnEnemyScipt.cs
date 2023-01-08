@@ -172,7 +172,7 @@ public class SpawnEnemyScipt : MonoBehaviour
     {
         if (scene.name == "JapanWarScene")
         {
-            if (roundNum == 5)
+            if (roundNum == 1)
             {
                 if (instantiatedEnemySoldiers.Length == 0)
                 {
@@ -190,6 +190,7 @@ public class SpawnEnemyScipt : MonoBehaviour
                             victoryAS.clip = victoryWinAS;
                             victoryAS.Play();
                             victory.GetComponent<Animator>().SetTrigger("ShowVictory");
+                            MapSceneScript.america = !MapSceneScript.america;
                         }
                     }
                 }
@@ -215,6 +216,7 @@ public class SpawnEnemyScipt : MonoBehaviour
                             victoryAS.clip = victoryWinAS;
                             victoryAS.Play();
                             victory.GetComponent<Animator>().SetTrigger("ShowVictory");
+                            MapSceneScript.spanish = !MapSceneScript.spanish;
                         }
                     }
                 }
@@ -322,7 +324,7 @@ public class SpawnEnemyScipt : MonoBehaviour
     {
         if (roundNum == 1)
         {
-            spawningCount(4, 5, 1);
+            spawningCount(0, 1, 10);
         }
         else if (roundNum == 2)
         {

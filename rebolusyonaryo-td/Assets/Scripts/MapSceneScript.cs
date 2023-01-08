@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MapSceneScript : MonoBehaviour
 {
@@ -22,12 +23,20 @@ public class MapSceneScript : MonoBehaviour
     public GameObject blackBG;
     public GameObject stageInfo;
 
+    public static bool america = false,
+        spanish = false;
+    public Button btnFlag2,
+        btnFlag3;
+
     void Start()
     {
         animateMainMenu();
     }
 
-    void Update() { }
+    void Update()
+    {
+        updateopenLevels();
+    }
 
     void animateMainMenu()
     {
@@ -81,6 +90,27 @@ public class MapSceneScript : MonoBehaviour
         else if (countryName.text == "Spanish")
         {
             SceneManager.LoadScene(5);
+        }
+    }
+
+    void updateopenLevels()
+    {
+        if (america)
+        {
+            btnFlag2.interactable = america;
+        }
+        else
+        {
+            btnFlag2.interactable = america;
+        }
+
+        if (spanish)
+        {
+            btnFlag3.interactable = spanish;
+        }
+        else
+        {
+            btnFlag3.interactable = spanish;
         }
     }
 }
