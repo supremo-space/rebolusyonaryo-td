@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SpanishWarScene.unity
     guid: b9e27289e7a42bb4c8a27593c5df833a
+  - enabled: 1
+    path: Assets/Scenes/CreditScene.unity
+    guid: b098f07bf546efd47be0070df130d414
   m_configObjects: {}

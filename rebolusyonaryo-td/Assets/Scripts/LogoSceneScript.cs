@@ -19,15 +19,9 @@ public class LogoSceneScript : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         lightLogo.GetComponent<Animator>().SetTrigger("ShowLogo");
+        lightLogo.GetComponent<AudioSource>().Play();
         StartCoroutine(delayMainMenuScene());
     }
-
-    // IEnumerator showRTD()
-    // {
-    //     yield return new WaitForSeconds(5.3f);
-    //     RTD.GetComponent<Animator>().SetTrigger("ShowRTD");
-    //     StartCoroutine(delayMainMenuScene());
-    // }
 
     IEnumerator delayMainMenuScene()
     {

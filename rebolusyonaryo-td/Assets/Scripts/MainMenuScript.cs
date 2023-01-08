@@ -9,6 +9,9 @@ public class MainMenuScript : MonoBehaviour
 
     public GameObject mainMenu;
 
+    public GameObject btn1,
+        btn2;
+
     void Start()
     {
         animateMainMenu();
@@ -30,6 +33,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void play()
     {
+        btn1.GetComponent<AudioSource>().Play();
         mainMenu.GetComponent<Animator>().SetTrigger("Play");
         StartCoroutine(goToMapScene());
     }
@@ -42,6 +46,13 @@ public class MainMenuScript : MonoBehaviour
 
     public void exit()
     {
+        btn2.GetComponent<AudioSource>().Play();
+        StartCoroutine(delayQuit());
+    }
+
+    IEnumerator delayQuit()
+    {
+        yield return new WaitForSeconds(0.3f);
         Application.Quit();
     }
 }

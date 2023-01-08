@@ -30,9 +30,12 @@ public class SpawnEnemyScipt : MonoBehaviour
     public AudioClip victoryWinAS;
     private float times;
 
+    public GameObject blackBG;
+
     void Start()
     {
         scene = SceneManager.GetActiveScene();
+        animateMainMenu();
     }
 
     void Update()
@@ -43,6 +46,16 @@ public class SpawnEnemyScipt : MonoBehaviour
         storePinoySoldier();
         ifEnemyZero();
         checkVictory();
+    }
+
+    void animateMainMenu()
+    {
+        blackBG.GetComponent<Animator>().SetTrigger("Fade");
+    }
+
+    void animateReverse()
+    {
+        blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
     }
 
     public void playButton()
@@ -224,7 +237,7 @@ public class SpawnEnemyScipt : MonoBehaviour
         }
         else if (scene.name == "SpanishWarScene")
         {
-            if (roundNum == 10)
+            if (roundNum == 1)
             {
                 if (instantiatedEnemySoldiers.Length == 0)
                 {
@@ -242,6 +255,7 @@ public class SpawnEnemyScipt : MonoBehaviour
                             victoryAS.clip = victoryWinAS;
                             victoryAS.Play();
                             victory.GetComponent<Animator>().SetTrigger("ShowVictory");
+                            MapSceneScript.chest = !MapSceneScript.chest;
                         }
                     }
                 }
@@ -400,11 +414,25 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     public void exitToMainmenu()
     {
-        SceneManager.LoadScene(1);
+        blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
+        StartCoroutine(delayExit());
+    }
+
+    IEnumerator delayExit()
+    {
+        yield return new WaitForSeconds(1.1f);
+        SceneManager.LoadScene(2);
     }
 
     public void retry()
     {
+        blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
+        StartCoroutine(delayRetry());
+    }
+
+    IEnumerator delayRetry()
+    {
+        yield return new WaitForSeconds(1.1f);
         isReadyToPlay = false;
         isSpawnAvailable = true;
         isSettingsOpen = false;
@@ -413,9 +441,14 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     public void nextLevel()
     {
-        // if (scene.name == "AmericanWarScene")
-        // {
-        //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        // }
+        animateReverse();
+        if (scene.name == "JapanWarScene")
+        {
+            SceneManager.LoadScene(4);
+        }
+        else
+        {
+            SceneManager.LoadScene(5);
+        }
     }
 }

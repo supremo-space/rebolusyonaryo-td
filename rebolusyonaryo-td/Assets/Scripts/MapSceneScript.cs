@@ -24,9 +24,16 @@ public class MapSceneScript : MonoBehaviour
     public GameObject stageInfo;
 
     public static bool america = false,
-        spanish = false;
+        spanish = false,
+        chest = false;
     public Button btnFlag2,
         btnFlag3;
+
+    public AudioSource clickAS;
+
+    public GameObject creditsChest;
+
+    public GameObject creditsBtn;
 
     void Start()
     {
@@ -50,6 +57,7 @@ public class MapSceneScript : MonoBehaviour
 
     public void cancel()
     {
+        clickAS.Play();
         stageInfo.GetComponent<Animator>().SetTrigger("CloseBox");
     }
 
@@ -61,36 +69,49 @@ public class MapSceneScript : MonoBehaviour
 
     public void openStage1()
     {
+        clickAS.Play();
         setStageInfo(0);
         openStageInfoBox();
     }
 
     public void openStage2()
     {
+        clickAS.Play();
         setStageInfo(1);
         openStageInfoBox();
     }
 
     public void openStage3()
     {
+        clickAS.Play();
         setStageInfo(2);
         openStageInfoBox();
     }
 
     public void playStage()
     {
+        clickAS.Play();
         if (countryName.text == "Japan")
         {
-            SceneManager.LoadScene(3);
+            blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
+            StartCoroutine(delayLoadScene(3));
         }
         else if (countryName.text == "America")
         {
-            SceneManager.LoadScene(4);
+            blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
+            StartCoroutine(delayLoadScene(4));
         }
         else if (countryName.text == "Spanish")
         {
-            SceneManager.LoadScene(5);
+            blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
+            StartCoroutine(delayLoadScene(5));
         }
+    }
+
+    IEnumerator delayLoadScene(int param)
+    {
+        yield return new WaitForSeconds(1.1f);
+        SceneManager.LoadScene(param);
     }
 
     void updateopenLevels()
@@ -112,5 +133,33 @@ public class MapSceneScript : MonoBehaviour
         {
             btnFlag3.interactable = spanish;
         }
+
+        if (chest)
+        {
+            creditsChest.SetActive(chest);
+        }
+        else
+        {
+            creditsChest.SetActive(chest);
+        }
+    }
+
+    public void openCredit()
+    {
+        creditsBtn.GetComponent<AudioSource>().Play();
+        StartCoroutine(delayCredits());
+    }
+
+    IEnumerator delayCredits()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(6);
+    }
+
+    public void allTrue()
+    {
+        america = !america;
+        spanish = !spanish;
+        chest = !chest;
     }
 }
