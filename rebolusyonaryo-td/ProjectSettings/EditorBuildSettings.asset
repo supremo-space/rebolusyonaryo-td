@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MapScene.unity
     guid: f92ad731fb7c72e408ab95f63344685f
   - enabled: 1
+    path: Assets/Scenes/JapanWarScene.unity
+    guid: aac15d070c7c1024b998aacdb532329f
+  - enabled: 1
     path: Assets/Scenes/AmericanWarScene.unity
     guid: 45362cb3098a6684099e12d09337ff83
   m_configObjects: {}

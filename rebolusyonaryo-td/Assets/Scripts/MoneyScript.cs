@@ -25,7 +25,7 @@ public class MoneyScript : MonoBehaviour
     void setinitialMoney()
     {
         pinoyDefendersCost = new int[] { 10, 20, 30, 40, 50, 20 };
-        money = 40;
+        money = 50;
     }
 
     //changing money text

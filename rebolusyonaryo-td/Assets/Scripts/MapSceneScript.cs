@@ -76,11 +76,11 @@ public class MapSceneScript : MonoBehaviour
         }
         else if (countryName.text == "America")
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
         }
         else if (countryName.text == "Spanish")
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(5);
         }
     }
 }

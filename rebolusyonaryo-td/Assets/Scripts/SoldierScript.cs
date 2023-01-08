@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SoldierScript : MonoBehaviour
 {
@@ -21,13 +22,26 @@ public class SoldierScript : MonoBehaviour
         "AmericanJeep(Clone)",
         "AmericanTank(Clone)"
     };
+
+    private string[] japaneseSoldiersName =
+    {
+        "JapaneseKnife(Clone)",
+        "JapaneseKatana(Clone)",
+        "JapaneseRevolver(Clone)",
+        "JapaneseRifleKnife(Clone)",
+        "JapaneseDoubleRifle(Clone)",
+        "JapaneseShotgun(Clone)"
+    };
     private int[] americanSoldiersHealth = { 10, 20, 30, 70, 90, 130, 180 };
+    private int[] japaneseSoldiersHealth = { 10, 20, 25, 35, 45, 50 };
     public GameObject healthBar;
     private Animator anim;
     public int defenderDamage;
+    private Scene scene;
 
     void Start()
     {
+        scene = SceneManager.GetActiveScene();
         GetComponent<AudioSource>().Play();
         points = GameObject.FindGameObjectWithTag("Points").GetComponent<PointsScript>();
         rb = this.GetComponent<Rigidbody2D>();
@@ -47,12 +61,26 @@ public class SoldierScript : MonoBehaviour
     //setting enemy stats
     void setEnemyStats()
     {
-        for (var i = 0; i < americanSoldiersName.Length; i++)
+        if (scene.name == "JapanWarScene")
         {
-            if (this.gameObject.name == americanSoldiersName[i])
+            for (var i = 0; i < japaneseSoldiersName.Length; i++)
             {
-                this.health = americanSoldiersHealth[i];
-                this.initialHealth = americanSoldiersHealth[i];
+                if (this.gameObject.name == japaneseSoldiersName[i])
+                {
+                    this.health = japaneseSoldiersHealth[i];
+                    this.initialHealth = japaneseSoldiersHealth[i];
+                }
+            }
+        }
+        else if (scene.name == "AmericanWarScene")
+        {
+            for (var i = 0; i < americanSoldiersName.Length; i++)
+            {
+                if (this.gameObject.name == americanSoldiersName[i])
+                {
+                    this.health = americanSoldiersHealth[i];
+                    this.initialHealth = americanSoldiersHealth[i];
+                }
             }
         }
     }
@@ -120,7 +148,16 @@ public class SoldierScript : MonoBehaviour
 
     void hasReward()
     {
-        bool[] rewardArr = { true, false, false };
+        bool[] rewardArr;
+        if (scene.name == "JapanWarScene")
+        {
+            rewardArr = new[] { true, false };
+        }
+        else
+        {
+            rewardArr = new[] { true, false, false };
+        }
+
         var randomBool = Random.Range(0, 3);
         if (rewardArr[randomBool])
         {

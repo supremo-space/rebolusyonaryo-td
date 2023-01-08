@@ -12,7 +12,9 @@ public class SpawnEnemyScipt : MonoBehaviour
     public GameObject spawnLocation;
     public Button[] defenderButtons;
     public static bool isReadyToPlay = false;
-    private bool isSpawnAvailable = true;
+    private bool isSpawnAvailable = true,
+        isSettingsOpen = false;
+    public GameObject settings;
     private int roundNum = 0;
     private int instantiatedEnemySoldiersCount = 0;
     public GameObject roundText;
@@ -75,7 +77,11 @@ public class SpawnEnemyScipt : MonoBehaviour
     //spawing enemy soldiers
     void spawnEnemySoldiers()
     {
-        if (scene.name == "AmericanWarScene")
+        if (scene.name == "JapanWarScene")
+        {
+            ifJapaneseScene();
+        }
+        else if (scene.name == "AmericanWarScene")
         {
             ifAmericanScene();
         }
@@ -160,7 +166,31 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     void checkVictory()
     {
-        if (scene.name == "AmericanWarScene")
+        if (scene.name == "JapanWarScene")
+        {
+            if (roundNum == 5)
+            {
+                if (instantiatedEnemySoldiers.Length == 0)
+                {
+                    if (!isReadyToPlay)
+                    {
+                        foreach (var btn in defenderButtons)
+                        {
+                            btn.interactable = false;
+                        }
+                        Time.timeScale = 1;
+                        if (!victoryAS.isPlaying)
+                        {
+                            victoryText.text = "Victory!";
+                            victoryAS.clip = victoryWinAS;
+                            victoryAS.Play();
+                            victory.GetComponent<Animator>().SetTrigger("ShowVictory");
+                        }
+                    }
+                }
+            }
+        }
+        else if (scene.name == "AmericanWarScene")
         {
             if (roundNum == 10)
             {
@@ -232,6 +262,31 @@ public class SpawnEnemyScipt : MonoBehaviour
         }
     }
 
+    void ifJapaneseScene()
+    {
+        if (roundNum == 1)
+        {
+            spawningCount(0, 2, 10);
+        }
+        else if (roundNum == 2)
+        {
+            spawningCount(1, 3, 25);
+        }
+        else if (roundNum == 3)
+        {
+            spawningCount(1, 4, 35);
+        }
+        else if (roundNum == 4)
+        {
+            spawningCount(2, 5, 50);
+            SoldierScript.speed = 80f;
+        }
+        else if (roundNum == 5)
+        {
+            spawningCount(4, 6, 55);
+        }
+    }
+
     void spawningCount(int min, int max, int count)
     {
         var randomNum = Random.Range(min, max);
@@ -247,5 +302,40 @@ public class SpawnEnemyScipt : MonoBehaviour
         {
             isSpawnAvailable = !isSpawnAvailable;
         }
+    }
+
+    public void openSettings()
+    {
+        if (isSettingsOpen)
+        {
+            settings.SetActive(false);
+            isSettingsOpen = !isSettingsOpen;
+        }
+        else
+        {
+            settings.SetActive(true);
+            isSettingsOpen = !isSettingsOpen;
+        }
+    }
+
+    public void exitToMainmenu()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void retry()
+    {
+        isReadyToPlay = false;
+        isSpawnAvailable = true;
+        isSettingsOpen = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void nextLevel()
+    {
+        // if (scene.name == "AmericanWarScene")
+        // {
+        //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // }
     }
 }
