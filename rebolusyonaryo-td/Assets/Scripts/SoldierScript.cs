@@ -43,7 +43,7 @@ public class SoldierScript : MonoBehaviour
     };
     private int[] americanSoldiersHealth = { 10, 20, 30, 70, 90, 130, 180 };
     private int[] japaneseSoldiersHealth = { 10, 20, 25, 35, 45, 50 };
-    private int[] spanishSoldiersHealth = { 15, 25, 50, 150, 2000 };
+    private int[] spanishSoldiersHealth = { 15, 25, 50, 150, 1500 };
     public GameObject healthBar;
     private Animator anim;
     public int defenderDamage;

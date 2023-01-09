@@ -59,9 +59,9 @@ public class PinoydefendersScript : MonoBehaviour
 
     void Update()
     {
+        sellButtonState();
         storeEnemySoldier();
         lookAtTheEnemyAndAttack();
-        sellButtonState();
     }
 
     void initializeVariables()
