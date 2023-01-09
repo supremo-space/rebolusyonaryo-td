@@ -101,7 +101,7 @@ public class MapSceneScript : MonoBehaviour
             blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
             StartCoroutine(delayLoadScene(4));
         }
-        else if (countryName.text == "Spanish")
+        else if (countryName.text == "Spain")
         {
             blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
             StartCoroutine(delayLoadScene(5));
@@ -158,8 +158,8 @@ public class MapSceneScript : MonoBehaviour
 
     public void allTrue()
     {
-        america = !america;
-        spanish = !spanish;
-        chest = !chest;
+        america = true;
+        spanish = true;
+        chest = true;
     }
 }

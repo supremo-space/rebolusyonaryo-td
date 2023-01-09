@@ -32,6 +32,9 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     public GameObject blackBG;
 
+    public GameObject defeatGO,
+        victoryGO;
+
     void Start()
     {
         scene = SceneManager.GetActiveScene();
@@ -185,7 +188,7 @@ public class SpawnEnemyScipt : MonoBehaviour
     {
         if (scene.name == "JapanWarScene")
         {
-            if (roundNum == 1)
+            if (roundNum == 5)
             {
                 if (instantiatedEnemySoldiers.Length == 0)
                 {
@@ -237,7 +240,7 @@ public class SpawnEnemyScipt : MonoBehaviour
         }
         else if (scene.name == "SpanishWarScene")
         {
-            if (roundNum == 1)
+            if (roundNum == 10)
             {
                 if (instantiatedEnemySoldiers.Length == 0)
                 {
@@ -414,6 +417,8 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     public void exitToMainmenu()
     {
+        defeatGO.SetActive(false);
+        victoryGO.SetActive(false);
         blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
         StartCoroutine(delayExit());
     }
@@ -426,6 +431,7 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     public void retry()
     {
+        defeatGO.SetActive(false);
         blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
         StartCoroutine(delayRetry());
     }
@@ -441,7 +447,14 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     public void nextLevel()
     {
+        victoryGO.SetActive(false);
         animateReverse();
+        StartCoroutine(delayNextLevel());
+    }
+
+    IEnumerator delayNextLevel()
+    {
+        yield return new WaitForSeconds(1.1f);
         if (scene.name == "JapanWarScene")
         {
             SceneManager.LoadScene(4);
