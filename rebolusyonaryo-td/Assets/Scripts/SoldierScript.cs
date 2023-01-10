@@ -41,7 +41,7 @@ public class SoldierScript : MonoBehaviour
         "SpanishBow(Clone)",
         "SpanishMagellan(Clone)",
     };
-    private int[] americanSoldiersHealth = { 10, 20, 30, 70, 90, 130, 180 };
+    private int[] americanSoldiersHealth = { 10, 20, 30, 60, 90, 120, 150 };
     private int[] japaneseSoldiersHealth = { 10, 20, 25, 35, 45, 50 };
     private int[] spanishSoldiersHealth = { 15, 25, 50, 150, 1500 };
     public GameObject healthBar;

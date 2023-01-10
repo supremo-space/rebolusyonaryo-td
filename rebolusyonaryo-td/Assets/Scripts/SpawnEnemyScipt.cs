@@ -201,7 +201,7 @@ public class SpawnEnemyScipt : MonoBehaviour
                         Time.timeScale = 1;
                         if (!victoryAS.isPlaying)
                         {
-                            roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+                            roundText.SetActive(false);
                             victoryText.text = "Victory!";
                             victoryAS.clip = victoryWinAS;
                             victoryAS.Play();
@@ -227,7 +227,7 @@ public class SpawnEnemyScipt : MonoBehaviour
                         Time.timeScale = 1;
                         if (!victoryAS.isPlaying)
                         {
-                            roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+                            roundText.SetActive(false);
                             victoryText.text = "Victory!";
                             victoryAS.clip = victoryWinAS;
                             victoryAS.Play();
@@ -253,7 +253,7 @@ public class SpawnEnemyScipt : MonoBehaviour
                         Time.timeScale = 1;
                         if (!victoryAS.isPlaying)
                         {
-                            roundText.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+                            roundText.SetActive(false);
                             victoryText.text = "Victory!";
                             victoryAS.clip = victoryWinAS;
                             victoryAS.Play();
@@ -274,11 +274,11 @@ public class SpawnEnemyScipt : MonoBehaviour
         }
         else if (roundNum == 2)
         {
-            spawningCount(0, 3, 25);
+            spawningCount(0, 3, 20);
         }
         else if (roundNum == 3)
         {
-            spawningCount(1, 3, 35);
+            spawningCount(1, 3, 30);
         }
         else if (roundNum == 4)
         {
@@ -287,24 +287,24 @@ public class SpawnEnemyScipt : MonoBehaviour
         }
         else if (roundNum == 5)
         {
-            spawningCount(2, 4, 55);
+            spawningCount(2, 4, 50);
         }
         else if (roundNum == 6)
         {
-            spawningCount(2, 5, 70);
+            spawningCount(2, 5, 60);
         }
         else if (roundNum == 7)
         {
-            spawningCount(3, 5, 80);
+            spawningCount(3, 5, 70);
         }
         else if (roundNum == 8)
         {
             SoldierScript.speed = 100f;
-            spawningCount(4, 6, 85);
+            spawningCount(4, 6, 80);
         }
         else if (roundNum == 9)
         {
-            spawningCount(4, 6, 95);
+            spawningCount(4, 6, 90);
         }
         else if (roundNum == 10)
         {

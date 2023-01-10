@@ -24,7 +24,7 @@ public class PinoydefendersScript : MonoBehaviour
         "PinoyShotgun(Clone)",
         "PinoyBomber(Clone)"
     };
-    private float[] pinoyDefenderAttackDelay = { 1f, 3f, 3f, 4f, 3f, 2f };
+    private float[] pinoyDefenderAttackDelay = { 1f, 2f, 3f, 4f, 3f, 2f };
     private float nextAttackTime;
     private float delayTime = 0f;
     private int damage = 0;
