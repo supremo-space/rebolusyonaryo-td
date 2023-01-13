@@ -20,7 +20,8 @@ public class MapSceneScript : MonoBehaviour
         "Spanish explorers first landed in the Philippines on March 17, 1521. The crew landed on the island of Homonhon, which is located in the eastern part of the Philippines. On April 27, 1521, the Battle of Mactan occurred as indigenous ruler Lapulapu resisted Spanish domination"
     };
 
-    public GameObject blackBG;
+    public GameObject blackBG,
+        blackBGForMainMenu;
     public GameObject stageInfo;
 
     public static bool america = false,
@@ -34,6 +35,8 @@ public class MapSceneScript : MonoBehaviour
     public GameObject creditsChest;
 
     public GameObject creditsBtn;
+
+    public GameObject bakcBtn;
 
     void Start()
     {
@@ -146,13 +149,14 @@ public class MapSceneScript : MonoBehaviour
 
     public void openCredit()
     {
+        blackBGForMainMenu.GetComponent<Animator>().SetTrigger("FadeOut");
         creditsBtn.GetComponent<AudioSource>().Play();
         StartCoroutine(delayCredits());
     }
 
     IEnumerator delayCredits()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.1f);
         SceneManager.LoadScene(6);
     }
 
@@ -161,5 +165,18 @@ public class MapSceneScript : MonoBehaviour
         america = true;
         spanish = true;
         chest = true;
+    }
+
+    public void backToMainMenu()
+    {
+        blackBGForMainMenu.GetComponent<Animator>().SetTrigger("FadeOut");
+        creditsBtn.GetComponent<AudioSource>().Play();
+        StartCoroutine(delayBack());
+    }
+
+    IEnumerator delayBack()
+    {
+        yield return new WaitForSeconds(1.1f);
+        SceneManager.LoadScene(1);
     }
 }

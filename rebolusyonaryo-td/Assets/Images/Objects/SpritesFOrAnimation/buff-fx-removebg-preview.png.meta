@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f8b61068d0cb9904baedaaa691debb2b
+guid: a3823b905cc1d0241adbf1068886d998
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 3
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: red-btn_0
+      name: buff-fx-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 76
-        y: 138
-        width: 460
-        height: 132
+        x: 125
+        y: 142
+        width: 222
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5c4e8ca770a0524ebcb62d6d8e96dce
-      internalID: -1105123035
+      spriteID: 281bcef13268e3642b43b760b20c6ba6
+      internalID: -1046370112
       vertices: []
       indices: 
       edges: []
@@ -160,7 +160,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      red-btn_0: -1105123035
+      buff-fx-removebg-preview_0: -1046370112
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

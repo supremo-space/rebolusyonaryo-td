@@ -11,7 +11,7 @@ public class ButtonsScript : MonoBehaviour
     public TextMeshProUGUI panelBtnText;
     public int scale = 1;
 
-    public bool isPanelOpen = true;
+    public static bool isPanelOpen = true;
 
     public Button panelBtn;
 
@@ -24,7 +24,10 @@ public class ButtonsScript : MonoBehaviour
         text.text = scale.ToString() + "x";
     }
 
-    void Update() { }
+    void Update()
+    {
+        openCloseText();
+    }
 
     public void speedUp()
     {
@@ -62,13 +65,23 @@ public class ButtonsScript : MonoBehaviour
         {
             panel.GetComponent<Animator>().SetTrigger("Close");
             isPanelOpen = !isPanelOpen;
-            panelBtnText.text = "Open";
         }
         else
         {
             panel.GetComponent<Animator>().SetTrigger("Open");
             isPanelOpen = !isPanelOpen;
+        }
+    }
+
+    void openCloseText()
+    {
+        if (isPanelOpen)
+        {
             panelBtnText.text = "Close";
+        }
+        else
+        {
+            panelBtnText.text = "Open";
         }
     }
 

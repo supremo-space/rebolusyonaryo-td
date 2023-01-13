@@ -21,6 +21,7 @@ public class DeployingScript : MonoBehaviour
     public AudioSource grassAS;
     public AudioSource bombAS;
     public static bool isBombPlay = false;
+    public GameObject panel;
 
     void Start() { }
 
@@ -89,6 +90,11 @@ public class DeployingScript : MonoBehaviour
         clickAS.Play();
         if (selectedID == -1)
         {
+            if (ButtonsScript.isPanelOpen)
+            {
+                panel.GetComponent<Animator>().SetTrigger("Close");
+                ButtonsScript.isPanelOpen = false;
+            }
             selectedID = id;
             var i = 0;
 
@@ -119,6 +125,12 @@ public class DeployingScript : MonoBehaviour
         foreach (var img in pinoyDefendersImages)
         {
             img.color = Color.white;
+        }
+
+        if (!ButtonsScript.isPanelOpen)
+        {
+            panel.GetComponent<Animator>().SetTrigger("Open");
+            ButtonsScript.isPanelOpen = true;
         }
     }
 

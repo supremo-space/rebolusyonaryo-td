@@ -34,6 +34,7 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     public GameObject defeatGO,
         victoryGO;
+    public GameObject panel;
 
     void Start()
     {
@@ -65,6 +66,16 @@ public class SpawnEnemyScipt : MonoBehaviour
     {
         playAS.Play();
         time = 0f;
+        if (ButtonsScript.isPanelOpen)
+        {
+            panel.GetComponent<Animator>().SetTrigger("Close");
+            ButtonsScript.isPanelOpen = false;
+        }
+        foreach (var defender in instantiatedPinoy)
+        {
+            defender.GetComponent<PinoydefendersScript>().roundCount++;
+        }
+
         if (!isReadyToPlay)
         {
             roundNum++;
@@ -159,6 +170,11 @@ public class SpawnEnemyScipt : MonoBehaviour
                     isSpawnAvailable = !isSpawnAvailable;
                     instantiatedEnemySoldiersCount = 0;
                     disableCircleCollider(false);
+                    if (!ButtonsScript.isPanelOpen)
+                    {
+                        panel.GetComponent<Animator>().SetTrigger("Open");
+                        ButtonsScript.isPanelOpen = true;
+                    }
                 }
             }
         }
@@ -403,6 +419,7 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     public void openSettings()
     {
+        Time.timeScale = 1;
         if (isSettingsOpen)
         {
             settings.SetActive(false);
@@ -417,6 +434,7 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     public void exitToMainmenu()
     {
+        Time.timeScale = 1;
         defeatGO.SetActive(false);
         victoryGO.SetActive(false);
         blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
@@ -426,11 +444,15 @@ public class SpawnEnemyScipt : MonoBehaviour
     IEnumerator delayExit()
     {
         yield return new WaitForSeconds(1.1f);
+        isReadyToPlay = false;
+        isSpawnAvailable = true;
+        isSettingsOpen = false;
         SceneManager.LoadScene(2);
     }
 
     public void retry()
     {
+        Time.timeScale = 1;
         defeatGO.SetActive(false);
         blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
         StartCoroutine(delayRetry());
@@ -447,6 +469,7 @@ public class SpawnEnemyScipt : MonoBehaviour
 
     public void nextLevel()
     {
+        Time.timeScale = 1;
         victoryGO.SetActive(false);
         animateReverse();
         StartCoroutine(delayNextLevel());

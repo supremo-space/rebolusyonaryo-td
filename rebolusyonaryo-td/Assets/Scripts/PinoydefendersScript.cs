@@ -27,7 +27,7 @@ public class PinoydefendersScript : MonoBehaviour
     private float[] pinoyDefenderAttackDelay = { 1f, 2f, 3f, 4f, 3f, 2f };
     private float nextAttackTime;
     private float delayTime = 0f;
-    private int damage = 0;
+    public int damage = 0;
 
     // private Vector3 initialBulletPos;
 
@@ -40,14 +40,23 @@ public class PinoydefendersScript : MonoBehaviour
 
     public GameObject[] bulletForRevolver;
 
-    public Image sellImageButton;
+    public Image sellImageButton,
+        sellCoin;
     public Button sellButton;
     public TextMeshProUGUI sellText;
 
+    public Image upgradeImageButton,
+        upgradeCoin;
+    public Button upgradeButton;
+    public TextMeshProUGUI upgradeText;
+    private int upgradeCost;
+    public int roundCount;
+    private int sellCost;
     public SpriteRenderer circle;
-
     public Vector3Int tilePosition;
     public Tilemap tilemap;
+    public AudioClip upgrade;
+    public bool scale = false;
 
     void Start()
     {
@@ -55,6 +64,7 @@ public class PinoydefendersScript : MonoBehaviour
         GetComponent<CircleCollider2D>().enabled = false;
         initializeVariables();
         setDefenderStats();
+        displayCost();
     }
 
     void Update()
@@ -62,6 +72,7 @@ public class PinoydefendersScript : MonoBehaviour
         sellButtonState();
         storeEnemySoldier();
         lookAtTheEnemyAndAttack();
+        displayCost();
     }
 
     void initializeVariables()
@@ -69,6 +80,7 @@ public class PinoydefendersScript : MonoBehaviour
         this.child = transform.GetChild(1).gameObject;
         isShown = false;
         isInsideTheRange = false;
+        roundCount = 1;
     }
 
     // showing the range
@@ -81,6 +93,11 @@ public class PinoydefendersScript : MonoBehaviour
             sellImageButton.enabled = false;
             sellButton.enabled = false;
             sellText.enabled = false;
+            upgradeImageButton.enabled = false;
+            upgradeButton.enabled = false;
+            upgradeText.enabled = false;
+            sellCoin.enabled = false;
+            upgradeCoin.enabled = false;
         }
         else
         {
@@ -89,6 +106,11 @@ public class PinoydefendersScript : MonoBehaviour
             sellImageButton.enabled = true;
             sellButton.enabled = true;
             sellText.enabled = true;
+            upgradeImageButton.enabled = true;
+            upgradeButton.enabled = true;
+            upgradeText.enabled = true;
+            sellCoin.enabled = true;
+            upgradeCoin.enabled = true;
         }
     }
 
@@ -124,6 +146,8 @@ public class PinoydefendersScript : MonoBehaviour
             {
                 delayTime = pinoyDefenderAttackDelay[i];
                 damage = pinoyDefenderDamages[i];
+                upgradeCost = (int)(MoneyScript.pinoyDefendersCost[i] * 0.7);
+                sellCost = MoneyScript.pinoyDefendersCost[i];
             }
         }
     }
@@ -248,14 +272,7 @@ public class PinoydefendersScript : MonoBehaviour
     {
         DeployingScript.sellPos = transform.position;
         Destroy(gameObject);
-
-        for (var i = 0; i < pinoyDefenderNames.Length; i++)
-        {
-            if (gameObject.name == pinoyDefenderNames[i])
-            {
-                MoneyScript.money += MoneyScript.pinoyDefendersCost[i];
-            }
-        }
+        MoneyScript.money += (sellCost / 2);
     }
 
     void sellButtonState()
@@ -263,10 +280,50 @@ public class PinoydefendersScript : MonoBehaviour
         if (SpawnEnemyScipt.isReadyToPlay)
         {
             sellButton.interactable = false;
+            disableUpgradeBtn();
         }
         else
         {
             sellButton.interactable = true;
+            disableUpgradeBtn();
         }
+    }
+
+    public void upgradeDefender()
+    {
+        gameObject.GetComponent<AudioSource>().PlayOneShot(upgrade, 0.7f);
+        gameObject.GetComponent<Animator>().SetTrigger("Upgrade");
+        this.damage *= 2;
+        if (this.upgradeCost < MoneyScript.money)
+        {
+            MoneyScript.money -= this.upgradeCost;
+            upgradeButton.gameObject.SetActive(false);
+        }
+    }
+
+    void ifScale()
+    {
+        if (scale)
+        {
+            gameObject.transform.localScale = new Vector3(40f, 40f, 1f);
+        }
+    }
+
+    void disableUpgradeBtn()
+    {
+        if (this.upgradeCost < MoneyScript.money)
+        {
+            upgradeButton.interactable = true;
+        }
+        else
+        {
+            upgradeButton.interactable = false;
+        }
+    }
+
+    void displayCost()
+    {
+        upgradeText.text = "Upgrade " + upgradeCost.ToString();
+        sellText.text = "Sell " + (sellCost / 2).ToString();
     }
 }

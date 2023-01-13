@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class CreditScript : MonoBehaviour
 {
-    void Start() { }
+    public GameObject blackBG;
+
+    void Start()
+    {
+        animateBlackBG();
+    }
 
     void Update()
     {
@@ -20,7 +25,20 @@ public class CreditScript : MonoBehaviour
             || Input.GetKeyUp(KeyCode.KeypadEnter)
         )
         {
-            SceneManager.LoadScene(1);
+            blackBG.GetComponent<Animator>().SetTrigger("FadeOut");
+            StartCoroutine(delayBackToMap());
         }
+    }
+
+    void animateBlackBG()
+    {
+        blackBG.GetComponent<Animator>().SetTrigger("Fade");
+    }
+
+    IEnumerator delayBackToMap()
+    {
+        yield return new WaitForSeconds(1.1f);
+
+        SceneManager.LoadScene(1);
     }
 }
