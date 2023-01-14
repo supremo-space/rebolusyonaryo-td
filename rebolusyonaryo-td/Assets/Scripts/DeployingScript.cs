@@ -90,6 +90,7 @@ public class DeployingScript : MonoBehaviour
         clickAS.Play();
         if (selectedID == -1)
         {
+            deployableTileMap.GetComponent<Animator>().SetTrigger("Blink");
             if (ButtonsScript.isPanelOpen)
             {
                 panel.GetComponent<Animator>().SetTrigger("Close");
@@ -132,6 +133,7 @@ public class DeployingScript : MonoBehaviour
             panel.GetComponent<Animator>().SetTrigger("Open");
             ButtonsScript.isPanelOpen = true;
         }
+        deployableTileMap.GetComponent<Animator>().SetTrigger("Stop");
     }
 
     //cursor image when clicked

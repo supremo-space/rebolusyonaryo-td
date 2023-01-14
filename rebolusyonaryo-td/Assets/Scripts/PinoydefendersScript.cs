@@ -280,17 +280,19 @@ public class PinoydefendersScript : MonoBehaviour
         if (SpawnEnemyScipt.isReadyToPlay)
         {
             sellButton.interactable = false;
-            disableUpgradeBtn();
+            upgradeButton.interactable = false;
         }
         else
         {
             sellButton.interactable = true;
-            disableUpgradeBtn();
+            upgradeButton.interactable = true;
         }
     }
 
     public void upgradeDefender()
     {
+        var timeScale = Time.timeScale;
+        Time.timeScale = 1;
         gameObject.GetComponent<AudioSource>().PlayOneShot(upgrade, 0.7f);
         gameObject.GetComponent<Animator>().SetTrigger("Upgrade");
         this.damage *= 2;
@@ -299,26 +301,13 @@ public class PinoydefendersScript : MonoBehaviour
             MoneyScript.money -= this.upgradeCost;
             upgradeButton.gameObject.SetActive(false);
         }
+        StartCoroutine(delayTimeScale(timeScale));
     }
 
-    void ifScale()
+    IEnumerator delayTimeScale(float param)
     {
-        if (scale)
-        {
-            gameObject.transform.localScale = new Vector3(40f, 40f, 1f);
-        }
-    }
-
-    void disableUpgradeBtn()
-    {
-        if (this.upgradeCost < MoneyScript.money)
-        {
-            upgradeButton.interactable = true;
-        }
-        else
-        {
-            upgradeButton.interactable = false;
-        }
+        yield return new WaitForSeconds(1f);
+        Time.timeScale = param;
     }
 
     void displayCost()
