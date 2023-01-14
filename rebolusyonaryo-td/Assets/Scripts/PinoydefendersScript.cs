@@ -285,7 +285,14 @@ public class PinoydefendersScript : MonoBehaviour
         else
         {
             sellButton.interactable = true;
-            upgradeButton.interactable = true;
+            if (this.upgradeCost < MoneyScript.money)
+            {
+                upgradeButton.interactable = true;
+            }
+            else
+            {
+                upgradeButton.interactable = false;
+            }
         }
     }
 

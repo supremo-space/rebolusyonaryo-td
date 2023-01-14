@@ -182,7 +182,7 @@ public class SoldierScript : MonoBehaviour
         var randomBool = Random.Range(0, 3);
         if (rewardArr[randomBool])
         {
-            MoneyScript.money += 1;
+            MoneyScript.money += 3;
         }
     }
 }

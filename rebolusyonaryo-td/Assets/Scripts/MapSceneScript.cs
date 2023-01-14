@@ -38,6 +38,8 @@ public class MapSceneScript : MonoBehaviour
 
     public GameObject bakcBtn;
 
+    public TMP_Text totalClearedText;
+
     void Start()
     {
         animateMainMenu();
@@ -46,6 +48,21 @@ public class MapSceneScript : MonoBehaviour
     void Update()
     {
         updateopenLevels();
+        updateTotalCleared();
+    }
+
+    void updateTotalCleared()
+    {
+        bool[] totalClearedArr = new bool[] { america, spanish, chest };
+        var totalCount = 0;
+        foreach (var i in totalClearedArr)
+        {
+            if (i == true)
+            {
+                totalCount++;
+            }
+        }
+        totalClearedText.text = totalCount.ToString() + "/" + totalClearedArr.Length;
     }
 
     void animateMainMenu()

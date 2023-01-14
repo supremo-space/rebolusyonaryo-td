@@ -22,6 +22,7 @@ public class DeployingScript : MonoBehaviour
     public AudioSource bombAS;
     public static bool isBombPlay = false;
     public GameObject panel;
+    private float times;
 
     void Start() { }
 
@@ -90,6 +91,8 @@ public class DeployingScript : MonoBehaviour
         clickAS.Play();
         if (selectedID == -1)
         {
+            times = Time.timeScale;
+            Time.timeScale = 1;
             deployableTileMap.GetComponent<Animator>().SetTrigger("Blink");
             if (ButtonsScript.isPanelOpen)
             {
@@ -134,6 +137,7 @@ public class DeployingScript : MonoBehaviour
             ButtonsScript.isPanelOpen = true;
         }
         deployableTileMap.GetComponent<Animator>().SetTrigger("Stop");
+        Time.timeScale = times;
     }
 
     //cursor image when clicked

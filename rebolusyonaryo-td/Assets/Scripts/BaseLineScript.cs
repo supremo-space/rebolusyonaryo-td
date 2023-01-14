@@ -20,17 +20,17 @@ public class BaseLineScript : MonoBehaviour
     {
         if (!ifEnemyIn)
         {
-            gameObject.GetComponent<AudioSource>().Play();
             if (soldier.gameObject.tag == "EnemySoldiers")
             {
+                gameObject.GetComponent<AudioSource>().Play();
                 foreach (var btn in defenderButtons)
                 {
                     btn.interactable = false;
                 }
+                Time.timeScale = 1;
+                defeatText.GetComponent<Animator>().SetTrigger("ShowVictory");
+                ifEnemyIn = !ifEnemyIn;
             }
-            Time.timeScale = 1;
-            defeatText.GetComponent<Animator>().SetTrigger("ShowVictory");
-            ifEnemyIn = !ifEnemyIn;
         }
     }
 }
